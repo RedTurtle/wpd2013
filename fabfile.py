@@ -1,4 +1,4 @@
-from fabric.api import run, cd, env
+from fabric.api import sudo, cd, env
 from fabric.utils import abort
 from fabric.colors import green
 
@@ -21,6 +21,6 @@ def staging():
 def buildout():
     """Pull buildout, run bin/buildount, touch wsgi"""
     with cd(env.directory):
-        run("git pull")
-        run("./bin/buildout -NU")
-        run("touch parts/mod_wsgi/wsgi")
+        sudo("git pull")
+        sudo("./bin/buildout -NU")
+        sudo("./bin/instance restart")
